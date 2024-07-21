@@ -1,0 +1,33 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+
+{% block content %}
+{{ time|default_if_none:" " }}
+<h4>{{ post.heading|censor }}</h4>
+<hr>
+<h6>{{ post.text|censor }}</h6>
+{% if post %}
+<table>
+    <tr>
+        <td><h5>Автор</h5></td>
+        <td><h5>Дата создания</h5></td>
+        <td><h5>Рейтинг</h5></td>
+    </tr>
+
+    <tr>
+        <td>{{ post.author.full_name }}</td>
+        <td>{{ time_now|date:'d M Y' }}</td>
+        <td>{{ post.rating }}</td>
+    </tr>
+
+</table>
+{% else %}
+<h2>Товаров нет!</h2>!
+{% endif %}
+{% endblock content %}
